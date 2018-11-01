@@ -13,6 +13,8 @@
 		481C1D95218B561200513E44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 481C1D94218B561200513E44 /* Assets.xcassets */; };
 		481C1D98218B561200513E44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 481C1D96218B561200513E44 /* LaunchScreen.storyboard */; };
 		481C1DA3218B561200513E44 /* BookBinderLab1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C1DA2218B561200513E44 /* BookBinderLab1Tests.swift */; };
+		481C1DAF218B5A4300513E44 /* BookBinderURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C1DAE218B5A4300513E44 /* BookBinderURI.swift */; };
+		481C1DB1218B5A6B00513E44 /* URIPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C1DB0218B5A6B00513E44 /* URIPart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		481C1D9E218B561200513E44 /* BookBinderLab1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookBinderLab1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		481C1DA2218B561200513E44 /* BookBinderLab1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookBinderLab1Tests.swift; sourceTree = "<group>"; };
 		481C1DA4218B561200513E44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		481C1DAE218B5A4300513E44 /* BookBinderURI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookBinderURI.swift; sourceTree = "<group>"; };
+		481C1DB0218B5A6B00513E44 /* URIPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIPart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		481C1D8C218B560F00513E44 /* BookBinderLab1 */ = {
 			isa = PBXGroup;
 			children = (
+				481C1DAD218B5A2400513E44 /* Models */,
 				481C1D8D218B560F00513E44 /* AppDelegate.swift */,
 				481C1D8F218B560F00513E44 /* ViewController.swift */,
 				481C1D91218B560F00513E44 /* Main.storyboard */,
@@ -94,6 +99,15 @@
 				481C1DA4218B561200513E44 /* Info.plist */,
 			);
 			path = BookBinderLab1Tests;
+			sourceTree = "<group>";
+		};
+		481C1DAD218B5A2400513E44 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				481C1DB0218B5A6B00513E44 /* URIPart.swift */,
+				481C1DAE218B5A4300513E44 /* BookBinderURI.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +211,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				481C1DAF218B5A4300513E44 /* BookBinderURI.swift in Sources */,
 				481C1D90218B560F00513E44 /* ViewController.swift in Sources */,
 				481C1D8E218B560F00513E44 /* AppDelegate.swift in Sources */,
+				481C1DB1218B5A6B00513E44 /* URIPart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
