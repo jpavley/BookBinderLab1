@@ -15,6 +15,9 @@
 		481C1DA3218B561200513E44 /* BookBinderLab1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C1DA2218B561200513E44 /* BookBinderLab1Tests.swift */; };
 		481C1DAF218B5A4300513E44 /* BookBinderURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C1DAE218B5A4300513E44 /* BookBinderURI.swift */; };
 		481C1DB1218B5A6B00513E44 /* URIPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C1DB0218B5A6B00513E44 /* URIPart.swift */; };
+		481C1DB3218B5B0E00513E44 /* BookBinderURITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C1DB2218B5B0E00513E44 /* BookBinderURITests.swift */; };
+		481C1DB4218B5B2500513E44 /* URIPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C1DB0218B5A6B00513E44 /* URIPart.swift */; };
+		481C1DB5218B5B2800513E44 /* BookBinderURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C1DAE218B5A4300513E44 /* BookBinderURI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,7 @@
 		481C1DA4218B561200513E44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		481C1DAE218B5A4300513E44 /* BookBinderURI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookBinderURI.swift; sourceTree = "<group>"; };
 		481C1DB0218B5A6B00513E44 /* URIPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIPart.swift; sourceTree = "<group>"; };
+		481C1DB2218B5B0E00513E44 /* BookBinderURITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookBinderURITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 		481C1DA1218B561200513E44 /* BookBinderLab1Tests */ = {
 			isa = PBXGroup;
 			children = (
+				481C1DB2218B5B0E00513E44 /* BookBinderURITests.swift */,
 				481C1DA2218B561200513E44 /* BookBinderLab1Tests.swift */,
 				481C1DA4218B561200513E44 /* Info.plist */,
 			);
@@ -222,7 +227,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				481C1DB4218B5B2500513E44 /* URIPart.swift in Sources */,
+				481C1DB5218B5B2800513E44 /* BookBinderURI.swift in Sources */,
 				481C1DA3218B561200513E44 /* BookBinderLab1Tests.swift in Sources */,
+				481C1DB3218B5B0E00513E44 /* BookBinderURITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

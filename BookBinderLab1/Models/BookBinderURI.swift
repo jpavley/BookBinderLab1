@@ -19,8 +19,9 @@ import Foundation
 import Foundation
 
 /// MVP 2: Simple URI format with versioning.
-/// version/publisher/title/era/volume/issue/printing/variant
-/// Int/String/String/Int/Int/Int/Int/String
+/// - version/publisher/title/era/volume/issue/printing/variant
+/// - Int/String/String/Int/Int/Int/Int/String
+/// - 0/1/2/3/4/5/6/7
 /// - All valid URIs begin with a version number and contain a the correct number of slashes for that version.
 /// - Missing parts are ok.
 /// - Example: Version 1 URIs start the Integer 1 and seven slashes.
@@ -72,8 +73,8 @@ struct BookBinderURI {
     
     /// Initialize a URI from a well formed URI string
     ///
-    /// version/publisher/title/era/volume/issue/printing/variant
-    /// 0/1/2/3/4/5/6/7
+    /// - version/publisher/title/era/volume/issue/printing/variant
+    /// - 0/1/2/3/4/5/6/7
     init?(fromURIString s: String) {
         
         if !BookBinderURI.isWellFormed(uriString: s) {
@@ -81,26 +82,26 @@ struct BookBinderURI {
             return nil
         }
         
-        versionPart = BookBinderURI.part(fromURIString: s, partID: .version)
-        publisherPart = BookBinderURI.part(fromURIString: s, partID: .publisher)
-        titlePart = BookBinderURI.part(fromURIString: s, partID: .title)
-        eraPart = BookBinderURI.part(fromURIString: s, partID: .era)
-        volumePart = BookBinderURI.part(fromURIString: s, partID: .volume)
-        issuePart = BookBinderURI.part(fromURIString: s, partID: .issue)
-        printingPart = BookBinderURI.part(fromURIString: s, partID: .printing)
-        variantPart = BookBinderURI.part(fromURIString: s, partID: .variant)
+        versionPart = BookBinderURI.part(fromURIString: s, partID: .version) ?? ""
+        publisherPart = BookBinderURI.part(fromURIString: s, partID: .publisher) ?? ""
+        titlePart = BookBinderURI.part(fromURIString: s, partID: .title) ?? ""
+        eraPart = BookBinderURI.part(fromURIString: s, partID: .era) ?? ""
+        volumePart = BookBinderURI.part(fromURIString: s, partID: .volume) ?? ""
+        issuePart = BookBinderURI.part(fromURIString: s, partID: .issue) ?? ""
+        printingPart = BookBinderURI.part(fromURIString: s, partID: .printing) ?? ""
+        variantPart = BookBinderURI.part(fromURIString: s, partID: .variant) ?? ""
     }
     
     // MARK:- Methods
     
     /// Returns the specified part of an URI
     ///
-    /// - Part Names: publisher/title/era/volume/printing/issue/variant
-    /// - Parts Index: 0/1/2/3/4/5/6
-    static func part(fromURIString s: String, partID: URIPart) -> String {
+    /// - Part Names: version/publisher/title/era/volume/issue/printing/variant
+    /// - Part Indexes: 0/1/2/3/4/5/6/7
+    static func part(fromURIString s: String, partID: URIPart) -> String? {
         
         if !BookBinderURI.isWellFormed(uriString: s) {
-            return BookBinderURI.emptyURIString
+            return nil
         }
         
         let parts = s.components(separatedBy: "/")
@@ -115,54 +116,81 @@ struct BookBinderURI {
     
     /// Returns just the series parts of an URI
     ///
-    /// version/publisher/title/era/volume///
-    /// 0/1/2/3/4///
-    static func extractSeriesURIString(fromURIString s: String) -> String {
+    /// - version/publisher/title/era/volume///
+    /// - 0/1/2/3/4///
+    static func extractSeriesURIString(fromURIString s: String) -> String? {
         
-        if !BookBinderURI.isWellFormed(uriString: s) {
-            return BookBinderURI.emptyURIString
+        if let versionPart = part(fromURIString: s, partID: .version),
+            let publisherPart = part(fromURIString: s, partID: .publisher),
+            let titlePart = part(fromURIString: s, partID: .title),
+            let eraPart = part(fromURIString: s, partID: .era),
+            let volumePart = part(fromURIString: s, partID: .volume)
+        {
+            return "\(versionPart)/\(publisherPart)/\(titlePart)/\(eraPart)/\(volumePart)///"
+        } else {
+            return nil
         }
-        
-        let parts = s.components(separatedBy: "/")
-        
-        let publisherPart = parts.count >= URIPart.publisher.rawValue + 1 ? parts[URIPart.publisher.rawValue] : ""
-        let titlePart = parts.count >= URIPart.title.rawValue + 1 ? parts[URIPart.title.rawValue] : ""
-        let eraPart = parts.count >= URIPart.era.rawValue + 1 ? parts[URIPart.era.rawValue] : ""
-        let volumePart = parts.count >= URIPart.volume.rawValue + 1 ? parts[URIPart.volume.rawValue] : ""
-        
-        return "\(publisherPart)/\(titlePart)/\(eraPart)/\(volumePart)///"
     }
     
     /// Returns the series and work parts of an URI
     ///
     /// version/publisher/title/era/volume/issue//
     /// 0/1/2/3/4/5//
-    static func extractWorkURIString(fromURIString s: String) -> String {
+    static func extractWorkURIString(fromURIString s: String) -> String? {
         
-        if !BookBinderURI.isWellFormed(uriString: s) {
-            return BookBinderURI.emptyURIString
+        if let versionPart = part(fromURIString: s, partID: .version),
+            let publisherPart = part(fromURIString: s, partID: .publisher),
+            let titlePart = part(fromURIString: s, partID: .title),
+            let eraPart = part(fromURIString: s, partID: .era),
+            let volumePart = part(fromURIString: s, partID: .volume),
+            let issuePart = part(fromURIString: s, partID: .issue)
+        {
+            return "\(versionPart)/\(publisherPart)/\(titlePart)/\(eraPart)/\(volumePart)/\(issuePart)//"
+        } else {
+            return nil
         }
-        
-        let parts = s.components(separatedBy: "/")
-        
-        let publisherPart = parts.count >= URIPart.publisher.rawValue + 1 ? parts[URIPart.publisher.rawValue] : ""
-        let titlePart = parts.count >= URIPart.title.rawValue + 1 ? parts[URIPart.title.rawValue] : ""
-        let eraPart = parts.count >= URIPart.era.rawValue + 1 ? parts[URIPart.era.rawValue] : ""
-        let volumePart = parts.count >= URIPart.volume.rawValue + 1 ? parts[URIPart.volume.rawValue] : ""
-        let issuePart = parts.count >= URIPart.issue.rawValue + 1 ? parts[URIPart.issue.rawValue] : ""
-        
-        return "\(publisherPart)/\(titlePart)/\(eraPart)/\(volumePart)//\(issuePart)/"
     }
     
+    /// Returns the series, work, and variant parts of an URI
+    ///
+    /// version/publisher/title/era/volume/issue/printing/variant
+    /// 0/1/2/3/4/5/6/7
+    static func extractVariantURIString(fromURIString s: String) -> String? {
+        
+        if let versionPart = part(fromURIString: s, partID: .version),
+            let publisherPart = part(fromURIString: s, partID: .publisher),
+            let titlePart = part(fromURIString: s, partID: .title),
+            let eraPart = part(fromURIString: s, partID: .era),
+            let volumePart = part(fromURIString: s, partID: .volume),
+            let issuePart = part(fromURIString: s, partID: .issue),
+            let printingPart = part(fromURIString: s, partID: .printing),
+            let variantPart = part(fromURIString: s, partID: .variant)
+        {
+            return "\(versionPart)/\(publisherPart)/\(titlePart)/\(eraPart)/\(volumePart)/\(issuePart)/\(printingPart)/\(variantPart)"
+        } else {
+            return nil
+        }
+    }
+
     
-    var seriesPart: BookBinderURI {
-        return BookBinderURI(fromURIString: BookBinderURI.extractSeriesURIString(fromURIString: self.description)) ?? BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
+    
+    var seriesURI: BookBinderURI {
+        if let stringResult = BookBinderURI.extractSeriesURIString(fromURIString: self.description),
+            let uriResult = BookBinderURI(fromURIString: stringResult) {
+            return uriResult
+        } else {
+            return BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
+        }
     }
     
-    var workPart: BookBinderURI {
-        return BookBinderURI(fromURIString: BookBinderURI.extractWorkURIString(fromURIString: self.description)) ?? BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
+    var workURI: BookBinderURI {
+        if let stringResult = BookBinderURI.extractWorkURIString(fromURIString: self.description),
+            let uriResult = BookBinderURI(fromURIString: stringResult) {
+            return uriResult
+        } else {
+            return BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
+        }
     }
-    
     
     /// Returns returns true if a URI contains the correct number of "/"s and start with the correct version number
     ///
@@ -170,19 +198,20 @@ struct BookBinderURI {
     /// 0/1/2/3/4/5/6/7
     static func isWellFormed(uriString: String) -> Bool {
         
-        var hasCorrectVersionNumber: Bool {
-            
-            return uriString.starts(with: "1")
+        func hasCorrectVersionNumber(target: Int) -> Bool {
+            return uriString.starts(with: "\(target)")
         }
         
-        var hasCorrectNumberOfSlashes: Bool {
-            
+        func hasCorrectNumberOfSlashes(target: Int) -> Bool {
             let regex = try? NSRegularExpression(pattern: "/", options: .caseInsensitive)
             let count = regex?.matches(in: uriString, options: [], range: NSRange(location: 0, length: uriString.count)).count
-            return count == BookBinderURI.slashCount
+            return count == target
         }
         
-        return hasCorrectNumberOfSlashes && hasCorrectNumberOfSlashes
+        let version = hasCorrectVersionNumber(target: BookBinderURI.currentVersion)
+        let slashes = hasCorrectNumberOfSlashes(target: BookBinderURI.slashCount)
+        
+        return version && slashes
     }
 }
 
@@ -194,16 +223,22 @@ extension BookBinderURI: CustomStringConvertible {
     /// 0/1/2/3/4/5/6/7
     var description: String {
         
+        func makePart(part: String) -> String {
+            return part != "" ? "/\(part)" : "/"
+        }
+        
         var result = ""
         
-        result += versionPart != "" ? "\(versionPart)" : ""
-        result += publisherPart != "" ? "\(publisherPart)" : ""
-        result += titlePart != "" ? "/\(titlePart)" : "/"
-        result += eraPart != "" ? "/\(eraPart)" : "/"
-        result += volumePart != "" ? "/\(volumePart)" : "/"
-        result += issuePart != "" ? "/\(issuePart)" : "/"
-        result += printingPart != "" ? "/\(printingPart)" : "/"
-        result += variantPart != "" ? "/\(variantPart)" : "/"
+        result += makePart(part: versionPart)
+        result += makePart(part: publisherPart)
+        result += makePart(part: titlePart)
+        result += makePart(part: eraPart)
+        result += makePart(part: volumePart)
+        result += makePart(part: issuePart)
+        result += makePart(part: printingPart)
+        result += makePart(part: variantPart)
+        
+        result = String(result.dropFirst())
         
         return result
     }
