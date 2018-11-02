@@ -28,6 +28,26 @@ class BookBinderURITests: XCTestCase {
     }
     
     func testInit() {
+        let uriUT1 = BookBinderURI()
+        XCTAssertNotNil(uriUT1)
+    }
+    
+    func testInitFromProperties() {
+        let uriUT1 = BookBinderURI(versionPart: "1", publisherPart: "publisher", titlePart: "title", eraPart: "era",
+                                   volumePart: "volume", issuePart: "issue", printingPart: "printing", variantPart: "variant")
+        XCTAssertNotNil(uriUT1)
+
+        XCTAssertEqual(BookBinderURI.part(fromURIString: uriUT1.description, partID: .version), "1")
+        XCTAssertEqual(BookBinderURI.part(fromURIString: uriUT1.description, partID: .publisher), "publisher")
+        XCTAssertEqual(BookBinderURI.part(fromURIString: uriUT1.description, partID: .title), "title")
+        XCTAssertEqual(BookBinderURI.part(fromURIString: uriUT1.description, partID: .era), "era")
+        XCTAssertEqual(BookBinderURI.part(fromURIString: uriUT1.description, partID: .volume), "volume")
+        XCTAssertEqual(BookBinderURI.part(fromURIString: uriUT1.description, partID: .issue), "issue")
+        XCTAssertEqual(BookBinderURI.part(fromURIString: uriUT1.description, partID: .printing), "printing")
+
+    }
+    
+    func testInitFromString() {
         let uriUT1 = BookBinderURI(fromURIString: emptyString)
         XCTAssertNil(uriUT1)
         
@@ -90,5 +110,64 @@ class BookBinderURITests: XCTestCase {
         XCTAssertEqual(BookBinderURI.extractVariantURIString(fromURIString: emptyURI), emptyURI)
         XCTAssertEqual(BookBinderURI.extractVariantURIString(fromURIString: badURI), nil)
     }
+    
+    func testSeriesURI() {
+        let uriUT1 = BookBinderURI(fromURIString: testURIString1)
+        let seriesURI1 = uriUT1?.seriesURI
+        XCTAssertEqual(seriesURI1?.description, testSeriesURIString)
+        
+        let uriUT2 = BookBinderURI(fromURIString: badURI)
+        let seriesURI2 = uriUT2?.seriesURI
+        XCTAssertNil(seriesURI2)
+        
+        let uriUT3 = BookBinderURI(fromURIString: emptyURI)
+        let seriesURI3 = uriUT3?.seriesURI
+        XCTAssertEqual(seriesURI3?.description, emptyURI)
+    }
+    
+    func testWorkURI() {
+        let uriUT1 = BookBinderURI(fromURIString: testURIString1)
+        let workURI1 = uriUT1?.workURI
+        XCTAssertEqual(workURI1?.description, testWorkURIString)
+        
+        let uriUT2 = BookBinderURI(fromURIString: badURI)
+        let workURI2 = uriUT2?.workURI
+        XCTAssertNil(workURI2)
+        
+        let uriUT3 = BookBinderURI(fromURIString: emptyURI)
+        let workURI3 = uriUT3?.workURI
+        XCTAssertEqual(workURI3?.description, emptyURI)
+    }
+    
+    func testVariantURI() {
+        let uriUT1 = BookBinderURI(fromURIString: testURIString1)
+        let workURI1 = uriUT1?.variantURI
+        XCTAssertEqual(workURI1?.description, testVariantURIString)
+        
+        let uriUT2 = BookBinderURI(fromURIString: badURI)
+        let workURI2 = uriUT2?.variantURI
+        XCTAssertNil(workURI2)
+        
+        let uriUT3 = BookBinderURI(fromURIString: emptyURI)
+        let workURI3 = uriUT3?.variantURI
+        XCTAssertEqual(workURI3?.description, emptyURI)
+    }
+    
+    func testHashable() {
+        let uriUT1 = BookBinderURI(fromURIString: testURIString1)
+        let uriUT2 = BookBinderURI(fromURIString: "1/publisher1/title/era/volume/issue/printing/variant")
+        let uriUT3 = BookBinderURI(fromURIString: testURIString1)
+        
+        XCTAssertTrue(uriUT1 == uriUT3)
+        XCTAssertFalse(uriUT1 == uriUT2)
+        
+        var dictionary1: [BookBinderURI:String] = [:]
+        dictionary1[uriUT1!] = "one"
+        dictionary1[uriUT2!] = "two"
+        
+        XCTAssertEqual(dictionary1[uriUT1!], "one")
+        XCTAssertEqual(dictionary1[uriUT2!], "two")
+    }
+
 
 }

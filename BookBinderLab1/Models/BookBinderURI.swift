@@ -71,6 +71,30 @@ struct BookBinderURI {
     
     // MARK:- Initialization
     
+    init() {
+        versionPart = ""
+        publisherPart = ""
+        titlePart = ""
+        eraPart = ""
+        volumePart = ""
+        issuePart = ""
+        printingPart = ""
+        variantPart = ""
+    }
+    
+    init(versionPart: String, publisherPart: String, titlePart: String, eraPart: String,
+         volumePart: String, issuePart: String, printingPart: String, variantPart: String) {
+        
+        self.versionPart = versionPart
+        self.publisherPart = publisherPart
+        self.titlePart = titlePart
+        self.eraPart = eraPart
+        self.volumePart = volumePart
+        self.issuePart = issuePart
+        self.printingPart = printingPart
+        self.variantPart = variantPart
+    }
+    
     /// Initialize a URI from a well formed URI string
     ///
     /// - version/publisher/title/era/volume/issue/printing/variant
@@ -171,8 +195,8 @@ struct BookBinderURI {
             return nil
         }
     }
-
     
+    // MARK:- URI Segments
     
     var seriesURI: BookBinderURI {
         if let stringResult = BookBinderURI.extractSeriesURIString(fromURIString: self.description),
@@ -191,6 +215,17 @@ struct BookBinderURI {
             return BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
         }
     }
+    
+    var variantURI: BookBinderURI {
+        if let stringResult = BookBinderURI.extractVariantURIString(fromURIString: self.description),
+            let uriResult = BookBinderURI(fromURIString: stringResult) {
+            return uriResult
+        } else {
+            return BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
+        }
+    }
+    
+    // MARK:- Validation
     
     /// Returns returns true if a URI contains the correct number of "/"s and start with the correct version number
     ///
