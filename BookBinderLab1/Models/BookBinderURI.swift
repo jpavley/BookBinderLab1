@@ -133,9 +133,9 @@ struct BookBinderURI {
         if parts.count > partID.rawValue {
             let part = parts[partID.rawValue]
             return part.trimmingCharacters(in: .whitespacesAndNewlines)
-        } else {
-            return ""
         }
+        
+        return ""
     }
     
     /// Returns just the series parts of an URI
@@ -151,9 +151,9 @@ struct BookBinderURI {
             let volumePart = part(fromURIString: s, partID: .volume)
         {
             return "\(versionPart)/\(publisherPart)/\(titlePart)/\(eraPart)/\(volumePart)///"
-        } else {
-            return nil
         }
+        
+        return nil
     }
     
     /// Returns the series and work parts of an URI
@@ -170,9 +170,9 @@ struct BookBinderURI {
             let issuePart = part(fromURIString: s, partID: .issue)
         {
             return "\(versionPart)/\(publisherPart)/\(titlePart)/\(eraPart)/\(volumePart)/\(issuePart)//"
-        } else {
-            return nil
         }
+        
+        return nil
     }
     
     /// Returns the series, work, and variant parts of an URI
@@ -191,9 +191,9 @@ struct BookBinderURI {
             let variantPart = part(fromURIString: s, partID: .variant)
         {
             return "\(versionPart)/\(publisherPart)/\(titlePart)/\(eraPart)/\(volumePart)/\(issuePart)/\(printingPart)/\(variantPart)"
-        } else {
-            return nil
         }
+        
+        return nil
     }
     
     // MARK:- URI Segments
@@ -202,27 +202,27 @@ struct BookBinderURI {
         if let stringResult = BookBinderURI.extractSeriesURIString(fromURIString: self.description),
             let uriResult = BookBinderURI(fromURIString: stringResult) {
             return uriResult
-        } else {
-            return BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
         }
+        
+        return BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
     }
     
     var workURI: BookBinderURI {
         if let stringResult = BookBinderURI.extractWorkURIString(fromURIString: self.description),
             let uriResult = BookBinderURI(fromURIString: stringResult) {
             return uriResult
-        } else {
-            return BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
         }
+        
+        return BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
     }
     
     var variantURI: BookBinderURI {
         if let stringResult = BookBinderURI.extractVariantURIString(fromURIString: self.description),
             let uriResult = BookBinderURI(fromURIString: stringResult) {
             return uriResult
-        } else {
-            return BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
         }
+        
+        return BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
     }
     
     // MARK:- Validation
