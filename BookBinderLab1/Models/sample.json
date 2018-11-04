@@ -1,0 +1,48 @@
+{
+    "selectedURI": "1/publisher-name/series-title/volume era/work-number/variant-letter",
+    "publisher": [
+        {
+            "name": "",
+            "series": [
+                {
+                    "title": "",
+                    "characters": [
+                        {
+                            "name": ""
+                        }
+                    ],
+                    "volumes": [
+                        {
+                            "kind": "ongoing, miniseries, one-shot, annual",
+                            "era": 0,
+                            "number": 0,
+                            "firstWorkNumber": 0,
+                            "currentWorkNumber": 0,
+                            "skippedWorkNumbers": [
+                                {
+                                    "number": 0
+                                }
+                            ],
+                            "works": [
+                                {
+                                    "number": 0,
+                                    "variants": [
+                                        {
+                                            "datePublished": "",
+                                            "kind": "magazine, trade, digital",
+                                            "printing": 0,
+                                            "letter": "",
+                                            "coverID": "",
+                                            "dateColleted": "",
+                                            "dateConsumed": ""
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
