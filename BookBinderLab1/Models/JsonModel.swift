@@ -23,7 +23,7 @@ import Foundation
 ///   lets an app know what the user was looking at the time of serialization.*
 /// ```
 /// {
-///     "selectedURI": "1/publisher-name/series-title/volume era/work-number/variant-letter",
+///     "selectedURI": "version-number/publisher-name/series-title/volume-era/work-number/variant-letter",
 ///     "publisher": [
 ///         {
 ///             "name": "",
