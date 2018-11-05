@@ -7,26 +7,18 @@
 //
 
 import Foundation
-
-//
-//  BookBinderURI.swift
-//  Book Binder
-//
-//  Created by John Pavley on 9/23/18.
-//  Copyright © 2018 John Pavley. All rights reserved.
-//
-
-import Foundation
-
-/// MVP 3: Simple URI format with versioning and less parts.
-/// - version/publisher/series/volume/issue/variant
-/// - Int/String/String/Int/Int/String
-/// - 0/1/2/3/4/5
-/// - All valid URIs begin with a version number and contain a the correct number of slashes for that version.
-/// - Missing parts are ok.
-/// - Example: Version 1 URIs start the Integer 1 and contain five slashes.
-/// - Full URI: "1/Marvel Entertainment/DoctorStrange/2018/1/c".
-/// - Empty URI: "1/////".
+/**
+ MVP 3: Simple URI format with versioning and only the parts it needs to support JsonModel.
+ - Note:
+     - Parts: version/publisher/series/volume/issue/variant
+     - Type: Int/String/String/Int/Int/String
+     - Index: 0/1/2/3/4/5
+     - All valid URIs begin with a version number and contain a the correct number of slashes for that version.
+     - Empty parts are **OK** but missing slashes are **not OK**
+     - Syntax: Version 1 URIs start the Integer 1 and contain five slashes.
+     - Example Full URI: "1/Marvel Entertainment/DoctorStrange/2018/1/c".
+     - Example Empty URI: "1/////".
+*/
 struct BookBinderURI {
     
     // MARK:- URI validation properties
@@ -34,6 +26,8 @@ struct BookBinderURI {
     static let currentVersion = 1
     static let slashCount = 5
     static let emptyURIString = "1/////"
+    
+    // MARK:- Part Properties
     
     /// String that represents a URI version prefix like "1".
     var versionPart: String
@@ -55,6 +49,9 @@ struct BookBinderURI {
     
     // MARK:- Initialization
     
+    /**
+     Creates an empty URI which is not valid (/////)
+    */
     init() {
         versionPart = ""
         publisherPart = ""
@@ -64,6 +61,16 @@ struct BookBinderURI {
         variantPart = ""
     }
     
+    /**
+     Create a URI from the supplied parameters.
+     - Parameters:
+         - versionPart: String that represents a URI version prefix like "1".
+         - publisherPart: String that represents a publisher like "Ziff Davis".
+         - seriesPart: String that represents the title of a series like "ROM Spaceknight".
+         - volumePart: String that represents an volume number like "1".
+         - issuePart: String that represents an issue number like "608"
+         - variantPart: String that represents a variant letter like "c"
+    */
     init(versionPart: String, publisherPart: String, seriesPart: String, volumePart: String, issuePart: String, variantPart: String) {
         
         self.versionPart = versionPart
@@ -74,8 +81,11 @@ struct BookBinderURI {
         self.variantPart = variantPart
     }
     
-    /// Initialize a URI from a well formed URI string
-    init?(fromURIString s: String) {
+    /**
+     Create a URI from a well formed URI string.
+     - Parameter fromURIString: String representation of a URI
+    */
+    init?(from s: String) {
         
         if !BookBinderURI.isWellFormed(uriString: s) {
             print("** BAD URI \(s)")

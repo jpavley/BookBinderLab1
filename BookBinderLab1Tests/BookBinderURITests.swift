@@ -42,17 +42,17 @@ class BookBinderURITests: XCTestCase {
     }
     
     func testInitFromString() {
-        let uriUT1 = BookBinderURI(fromURIString: emptyString)
+        let uriUT1 = BookBinderURI(from: emptyString)
         XCTAssertNil(uriUT1)
         
-        let uriUT2 = BookBinderURI(fromURIString: badURI)
+        let uriUT2 = BookBinderURI(from: badURI)
         XCTAssertNil(uriUT2)
         
-        let uriUT3 = BookBinderURI(fromURIString: emptyURI)
+        let uriUT3 = BookBinderURI(from: emptyURI)
         XCTAssertNotNil(uriUT3)
         XCTAssertEqual(uriUT3?.description, emptyURI)
         
-        let uriUT4 = BookBinderURI(fromURIString: testURIString1)
+        let uriUT4 = BookBinderURI(from: testURIString1)
         XCTAssertNotNil(uriUT4)
         XCTAssertEqual(uriUT4?.description, testURIString1)
     }
@@ -82,9 +82,9 @@ class BookBinderURITests: XCTestCase {
     }
     
     func testHashable() {
-        let uriUT1 = BookBinderURI(fromURIString: testURIString1)
-        let uriUT2 = BookBinderURI(fromURIString: "1/publisher1/series/volume/issue/variant")
-        let uriUT3 = BookBinderURI(fromURIString: testURIString1)
+        let uriUT1 = BookBinderURI(from: testURIString1)
+        let uriUT2 = BookBinderURI(from: "1/publisher1/series/volume/issue/variant")
+        let uriUT3 = BookBinderURI(from: testURIString1)
         
         XCTAssertTrue(uriUT1 == uriUT3)
         XCTAssertFalse(uriUT1 == uriUT2)

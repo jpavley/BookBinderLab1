@@ -35,7 +35,7 @@ class JsonModelTests: XCTestCase {
         XCTAssertEqual(testModel.publishers[0].series[0].volumes[0].works[0].variants[0].letter, "a")
         XCTAssertEqual(testModel.selectedURI, "1/publisher/series/1/1/a")
         
-        let testModelURI = BookBinderURI(fromURIString: testModel.selectedURI)
+        let testModelURI = BookBinderURI(from: testModel.selectedURI)
         XCTAssertNotNil(testModelURI)
     }
     
@@ -60,7 +60,7 @@ class JsonModelTests: XCTestCase {
                     XCTAssertEqual(jsonModel.publishers[0].series[0].volumes[0].works[0].variants[0].letter, "")
                     XCTAssertEqual(jsonModel.selectedURI, "version-number/publisher-name/series-title/volume-era/work-number/variant-letter")
                     
-                    let jsonModelURI = BookBinderURI(fromURIString: jsonModel.selectedURI)
+                    let jsonModelURI = BookBinderURI(from: jsonModel.selectedURI)
                     XCTAssertNil(jsonModelURI)
                     
                 } catch {
@@ -102,7 +102,7 @@ class JsonModelTests: XCTestCase {
                     XCTAssertEqual(jsonModel.publishers[0].series[0].volumes[0].works[0].variants[0].letter, "")
                     XCTAssertEqual(jsonModel.selectedURI, "1/Marble Entertainment/The People Under The Chair/1950/3/b")
                     
-                    let jsonModelURI = BookBinderURI(fromURIString: jsonModel.selectedURI)
+                    let jsonModelURI = BookBinderURI(from: jsonModel.selectedURI)
                     XCTAssertNotNil(jsonModelURI)
                     
                 } catch {
