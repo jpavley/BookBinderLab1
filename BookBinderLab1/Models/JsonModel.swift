@@ -9,7 +9,7 @@
 import Foundation
 /**
  Models a serializable `Publisher` list with `Series`, `Volumes`, `Works`, and `Variants` in JSON.
- See [sample.json] for JSON schema. See [publishers.json] for example implementation.
+ See [schema] for JSON schema. See [sample1.json] for example implementation.
  - Note:
     - A publisher is an entity that creates and publically distributes works of art (books, movies, games, etc).
     - A series is a set of related works published in succession (trilogy, sequals, serial, etc).
