@@ -20,7 +20,7 @@ import Foundation
 struct JsonModel: Codable {
     
     /// The URI object the user has selected.
-    /// - URI formet: publisher/series/volume/work/variant
+    /// - URI formet: version/publisher/series/volume/work/variant
     let selectedURI: String
     
     /// A list of publishers contained in this model.
