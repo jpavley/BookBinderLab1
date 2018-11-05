@@ -33,11 +33,11 @@ class BookBinderURITests: XCTestCase {
                                    volumePart: "volume", issuePart: "issue", variantPart: "variant")
         XCTAssertNotNil(uriUT1)
 
-        XCTAssertEqual(BookBinderURI.part(fromURIString: uriUT1.description, partID: .version), "1")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: uriUT1.description, partID: .publisher), "publisher")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: uriUT1.description, partID: .series), "series")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: uriUT1.description, partID: .volume), "volume")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: uriUT1.description, partID: .issue), "issue")
+        XCTAssertEqual(BookBinderURI.part(from: uriUT1.description, partID: .version), "1")
+        XCTAssertEqual(BookBinderURI.part(from: uriUT1.description, partID: .publisher), "publisher")
+        XCTAssertEqual(BookBinderURI.part(from: uriUT1.description, partID: .series), "series")
+        XCTAssertEqual(BookBinderURI.part(from: uriUT1.description, partID: .volume), "volume")
+        XCTAssertEqual(BookBinderURI.part(from: uriUT1.description, partID: .issue), "issue")
 
     }
     
@@ -59,26 +59,26 @@ class BookBinderURITests: XCTestCase {
     
     func testPartFromURIString() {
         
-        XCTAssertEqual(BookBinderURI.part(fromURIString: testURIString1, partID: .version), "1")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: testURIString1, partID: .publisher), "publisher")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: testURIString1, partID: .series), "series")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: testURIString1, partID: .volume), "volume")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: testURIString1, partID: .issue), "issue")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: testURIString1, partID: .variant), "variant")
+        XCTAssertEqual(BookBinderURI.part(from: testURIString1, partID: .version), "1")
+        XCTAssertEqual(BookBinderURI.part(from: testURIString1, partID: .publisher), "publisher")
+        XCTAssertEqual(BookBinderURI.part(from: testURIString1, partID: .series), "series")
+        XCTAssertEqual(BookBinderURI.part(from: testURIString1, partID: .volume), "volume")
+        XCTAssertEqual(BookBinderURI.part(from: testURIString1, partID: .issue), "issue")
+        XCTAssertEqual(BookBinderURI.part(from: testURIString1, partID: .variant), "variant")
         
-        XCTAssertEqual(BookBinderURI.part(fromURIString: emptyURI, partID: .version), "1")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: emptyURI, partID: .publisher), "")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: emptyURI, partID: .series), "")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: emptyURI, partID: .volume), "")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: emptyURI, partID: .issue), "")
-        XCTAssertEqual(BookBinderURI.part(fromURIString: emptyURI, partID: .variant), "")
+        XCTAssertEqual(BookBinderURI.part(from: emptyURI, partID: .version), "1")
+        XCTAssertEqual(BookBinderURI.part(from: emptyURI, partID: .publisher), "")
+        XCTAssertEqual(BookBinderURI.part(from: emptyURI, partID: .series), "")
+        XCTAssertEqual(BookBinderURI.part(from: emptyURI, partID: .volume), "")
+        XCTAssertEqual(BookBinderURI.part(from: emptyURI, partID: .issue), "")
+        XCTAssertEqual(BookBinderURI.part(from: emptyURI, partID: .variant), "")
 
-        XCTAssertEqual(BookBinderURI.part(fromURIString: badURI, partID: .version), nil)
-        XCTAssertEqual(BookBinderURI.part(fromURIString: badURI, partID: .publisher), nil)
-        XCTAssertEqual(BookBinderURI.part(fromURIString: badURI, partID: .series), nil)
-        XCTAssertEqual(BookBinderURI.part(fromURIString: badURI, partID: .volume), nil)
-        XCTAssertEqual(BookBinderURI.part(fromURIString: badURI, partID: .issue), nil)
-        XCTAssertEqual(BookBinderURI.part(fromURIString: badURI, partID: .variant), nil)
+        XCTAssertEqual(BookBinderURI.part(from: badURI, partID: .version), nil)
+        XCTAssertEqual(BookBinderURI.part(from: badURI, partID: .publisher), nil)
+        XCTAssertEqual(BookBinderURI.part(from: badURI, partID: .series), nil)
+        XCTAssertEqual(BookBinderURI.part(from: badURI, partID: .volume), nil)
+        XCTAssertEqual(BookBinderURI.part(from: badURI, partID: .issue), nil)
+        XCTAssertEqual(BookBinderURI.part(from: badURI, partID: .variant), nil)
     }
     
     func testHashable() {

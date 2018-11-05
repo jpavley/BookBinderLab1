@@ -83,7 +83,7 @@ struct BookBinderURI {
     
     /**
      Create a URI from a well formed URI string.
-     - Parameter fromURIString: String representation of a URI
+     - Parameter from: String representation of a URI
     */
     init?(from s: String) {
         
@@ -92,19 +92,21 @@ struct BookBinderURI {
             return nil
         }
         
-        versionPart = BookBinderURI.part(fromURIString: s, partID: .version) ?? ""
-        publisherPart = BookBinderURI.part(fromURIString: s, partID: .publisher) ?? ""
-        seriesPart = BookBinderURI.part(fromURIString: s, partID: .series) ?? ""
-        volumePart = BookBinderURI.part(fromURIString: s, partID: .volume) ?? ""
-        issuePart = BookBinderURI.part(fromURIString: s, partID: .issue) ?? ""
-        variantPart = BookBinderURI.part(fromURIString: s, partID: .variant) ?? ""
+        versionPart = BookBinderURI.part(from: s, partID: .version) ?? ""
+        publisherPart = BookBinderURI.part(from: s, partID: .publisher) ?? ""
+        seriesPart = BookBinderURI.part(from: s, partID: .series) ?? ""
+        volumePart = BookBinderURI.part(from: s, partID: .volume) ?? ""
+        issuePart = BookBinderURI.part(from: s, partID: .issue) ?? ""
+        variantPart = BookBinderURI.part(from: s, partID: .variant) ?? ""
     }
     
     // MARK:- Methods
     
-    /// Returns the specified part of an URI
-    ///
-    static func part(fromURIString s: String, partID: URIPart) -> String? {
+    /**
+     Returns the specified part of an URI.
+     - Parameter from: String representation of a URI
+    */
+    static func part(from s: String, partID: URIPart) -> String? {
         
         if !BookBinderURI.isWellFormed(uriString: s) {
             return nil
