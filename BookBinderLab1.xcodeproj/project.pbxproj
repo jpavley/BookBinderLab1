@@ -20,6 +20,7 @@
 		481C1DB5218B5B2800513E44 /* BookBinderURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481C1DAE218B5A4300513E44 /* BookBinderURI.swift */; };
 		484FF786218E021C00F712D7 /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484FF785218E021C00F712D7 /* JsonModel.swift */; };
 		484FF788218F403C00F712D7 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 484FF787218F403B00F712D7 /* schema.json */; };
+		489F3E1D2190CB220047B111 /* sample1.json in Resources */ = {isa = PBXBuildFile; fileRef = 489F3E1C2190CB220047B111 /* sample1.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		481C1DB2218B5B0E00513E44 /* BookBinderURITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookBinderURITests.swift; sourceTree = "<group>"; };
 		484FF785218E021C00F712D7 /* JsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModel.swift; sourceTree = "<group>"; };
 		484FF787218F403B00F712D7 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		489F3E1C2190CB220047B111 /* sample1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sample1.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				481C1DB0218B5A6B00513E44 /* URIPart.swift */,
 				481C1DAE218B5A4300513E44 /* BookBinderURI.swift */,
 				484FF785218E021C00F712D7 /* JsonModel.swift */,
+				489F3E1C2190CB220047B111 /* sample1.json */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				481C1D98218B561200513E44 /* LaunchScreen.storyboard in Resources */,
+				489F3E1D2190CB220047B111 /* sample1.json in Resources */,
 				484FF788218F403C00F712D7 /* schema.json in Resources */,
 				481C1D95218B561200513E44 /* Assets.xcassets in Resources */,
 				481C1D93218B560F00513E44 /* Main.storyboard in Resources */,
