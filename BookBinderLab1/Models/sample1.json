@@ -1,6 +1,6 @@
 {
     "selectedURI": "1/Marble Entertainment/The People Under The Chair/1950/3/b",
-    "publisher": [
+    "publishers": [
         {
             "name": "Marble Entertainment",
             "series": [
@@ -25,7 +25,7 @@
                                             "printing": 1,
                                             "letter": "",
                                             "coverID": "under-chair-people-1",
-                                            "dateColleted": "2/3/2014",
+                                            "dateCollected": "2/3/2014",
                                             "dateConsumed": "4/5/2015"
                                         }
                                     ]
@@ -39,7 +39,7 @@
                                             "printing": 1,
                                             "letter": "b",
                                             "coverID": "under-chair-people-3b",
-                                            "dateColleted": "2/3/2014",
+                                            "dateCollected": "2/3/2014",
                                             "dateConsumed": "4/6/2015"
                                         },
                                         {
@@ -48,7 +48,7 @@
                                             "printing": 2,
                                             "letter": "c",
                                             "coverID": "under-chair-people-3c",
-                                            "dateColleted": "2/3/2014",
+                                            "dateCollected": "2/3/2014",
                                             "dateConsumed": ""
                                         }
                                     ]
@@ -73,7 +73,7 @@
                                             "printing": 1,
                                             "letter": "",
                                             "coverID": "under-chair-people-v2-i1",
-                                            "dateColleted": "2/3/2014",
+                                            "dateCollected": "2/3/2014",
                                             "dateConsumed": "4/5/2015"
                                         },
                                         {
@@ -82,7 +82,7 @@
                                             "printing": 3,
                                             "letter": "x",
                                             "coverID": "under-chair-people-v2-i1x",
-                                            "dateColleted": "2/3/2014",
+                                            "dateCollected": "2/3/2014",
                                             "dateConsumed": "4/5/2015"
                                         }
                                     ]
@@ -96,7 +96,7 @@
                                             "printing": 1,
                                             "letter": "",
                                             "coverID": "under-chair-people-v2-i4",
-                                            "dateColleted": "3/5/2016",
+                                            "dateCollected": "3/5/2016",
                                             "dateConsumed": "3/7/2017"
                                         }
                                     ]
@@ -110,7 +110,7 @@
                                             "printing": 0,
                                             "letter": "n",
                                             "coverID": "under-chair-people-v2-i8m",
-                                            "dateColleted": "3/5/2016",
+                                            "dateCollected": "3/5/2016",
                                             "dateConsumed": "3/7/2017"
                                         }
                                     ]
@@ -140,7 +140,7 @@
                                             "printing": 0,
                                             "letter": "",
                                             "coverID": "eternal-bells-1",
-                                            "dateColleted": "",
+                                            "dateCollected": "",
                                             "dateConsumed": "4/5/2015"
                                         }
                                     ]
@@ -154,7 +154,7 @@
                                             "printing": 0,
                                             "letter": "",
                                             "coverID": "eternal-bells-2",
-                                            "dateColleted": "2/3/2018",
+                                            "dateCollected": "2/3/2018",
                                             "dateConsumed": ""
                                         }
                                     ]
@@ -168,7 +168,7 @@
                                             "printing": 0,
                                             "letter": "",
                                             "coverID": "eternal-bells-5",
-                                            "dateColleted": "2/3/2018",
+                                            "dateCollected": "2/3/2018",
                                             "dateConsumed": "2/3/2018"
                                         },
                                         {
@@ -177,7 +177,7 @@
                                             "printing": 10,
                                             "letter": "a",
                                             "coverID": "eternal-bells-5a",
-                                            "dateColleted": "2/5/2018",
+                                            "dateCollected": "2/5/2018",
                                             "dateConsumed": "2/8/2018"
                                         },
                                         {
@@ -186,7 +186,7 @@
                                             "printing": 1,
                                             "letter": "c",
                                             "coverID": "eternal-bells-5c",
-                                            "dateColleted": "2/4/2018",
+                                            "dateCollected": "2/4/2018",
                                             "dateConsumed": "2/4/2018"
                                         }
 
@@ -222,7 +222,7 @@
                                             "printing": 0,
                                             "letter": "",
                                             "coverID": "human-animal",
-                                            "dateColleted": "7/8/2010",
+                                            "dateCollected": "7/8/2010",
                                             "dateConsumed": "7/8/2010"
                                         }
                                     ]

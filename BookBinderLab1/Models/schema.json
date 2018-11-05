@@ -1,6 +1,6 @@
 {
     "selectedURI": "version-number/publisher-name/series-title/volume-era/work-number/variant-letter",
-    "publisher": [
+    "publishers": [
         {
             "name": "",
             "series": [
@@ -25,7 +25,7 @@
                                             "printing": 0,
                                             "letter": "",
                                             "coverID": "",
-                                            "dateColleted": "",
+                                            "dateCollected": "",
                                             "dateConsumed": ""
                                         }
                                     ]
