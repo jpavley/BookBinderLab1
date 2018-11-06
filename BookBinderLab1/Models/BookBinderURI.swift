@@ -124,7 +124,10 @@ struct BookBinderURI {
     
     // MARK:- Validation
     
-    /// Returns returns true if a URI contains the correct number of "/"s and start with the correct version number
+    /**
+     Returns returns true if a URI contains the correct number of "/"s and start with the correct version number.
+     - Parameter uriString: A URI String representation to validate.
+    */
     static func isWellFormed(uriString: String) -> Bool {
         
         func hasCorrectVersionNumber(target: Int) -> Bool {
@@ -146,10 +149,9 @@ struct BookBinderURI {
 
 extension BookBinderURI: CustomStringConvertible {
     
-    /// Builds a string version of an URI based on the value of it's parts
-    ///
-    /// version/publisher/title/era/volume/issue/printing/variant
-    /// 0/1/2/3/4/5/6/7
+    /**
+     Returns a string version of an URI based on the value of it's parts.
+    */
     var description: String {
         
         func makePart(part: String) -> String {
