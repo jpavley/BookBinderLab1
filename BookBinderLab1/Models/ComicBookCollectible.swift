@@ -19,8 +19,17 @@ struct ComicBookCollectible {
     let work: JsonModel.JsonPublisher.JsonSeries.JsonVolume.JsonWork
     let variant: JsonModel.JsonPublisher.JsonSeries.JsonVolume.JsonWork.JsonVariant
     
+    // MARK:- Calculated Properties
+    
     var uri: BookBinderURI {
         return BookBinderURI(versionPart: "1", publisherPart: publisher.name, seriesPart: series.title, volumePart: "\(volume.era)", issuePart: "\(work.number)", variantPart: "\(variant.letter)")
     }
     
+    var isOwned: Bool {
+        return variant.dateCollected != ""
+    }
+    
+    var wasRead: Bool {
+        return variant.dateConsumed != ""
+    }
 }

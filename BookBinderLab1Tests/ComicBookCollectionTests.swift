@@ -79,4 +79,36 @@ class ComicBookCollectionTests: XCTestCase {
         XCTAssertEqual(anotherComicBook.variant.letter, "c")
 
     }
+    
+    func testURI() {
+        let comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
+        let selectedURI = BookBinderURI(from: comicBookCollection.comicBookModel.selectedURI)
+        let selectedComicbook = comicBookCollection.comicBookCollectibleBy(uri: selectedURI!)
+        
+        XCTAssertEqual(selectedComicbook.uri, selectedURI)
+    }
+    
+    func testIsOwned() {
+        let comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
+        
+        let selectedURI = BookBinderURI(from: comicBookCollection.comicBookModel.selectedURI)
+        let selectedComicbook = comicBookCollection.comicBookCollectibleBy(uri: selectedURI!)
+        XCTAssertEqual(selectedComicbook.isOwned, true)
+        
+        let anotherURI = BookBinderURI(from: "1/Marble Entertainment/Eternal Bells/1970/1/")
+        let anotherComicBook = comicBookCollection.comicBookCollectibleBy(uri: anotherURI!)
+        XCTAssertEqual(anotherComicBook.isOwned, false)
+    }
+    
+    func testWasRead() {
+        let comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
+        
+        let selectedURI = BookBinderURI(from: comicBookCollection.comicBookModel.selectedURI)
+        let selectedComicbook = comicBookCollection.comicBookCollectibleBy(uri: selectedURI!)
+        XCTAssertEqual(selectedComicbook.wasRead, true)
+
+        let anotherURI = BookBinderURI(from: "1/Marble Entertainment/Eternal Bells/1970/2/")
+        let anotherComicBook = comicBookCollection.comicBookCollectibleBy(uri: anotherURI!)
+        XCTAssertEqual(anotherComicBook.wasRead, false)
+    }
 }
