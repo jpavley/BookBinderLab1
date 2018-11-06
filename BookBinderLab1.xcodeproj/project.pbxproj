@@ -25,6 +25,9 @@
 		489F3E202190D2860047B111 /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484FF785218E021C00F712D7 /* JsonModel.swift */; };
 		489F3E212190D28A0047B111 /* sample1.json in Resources */ = {isa = PBXBuildFile; fileRef = 489F3E1C2190CB220047B111 /* sample1.json */; };
 		489F3E222190D28F0047B111 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 484FF787218F403B00F712D7 /* schema.json */; };
+		489F3E2421914EB60047B111 /* ComicBookCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489F3E2321914EB60047B111 /* ComicBookCollection.swift */; };
+		489F3E26219155030047B111 /* ComicBookCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489F3E25219155030047B111 /* ComicBookCollectionTests.swift */; };
+		489F3E272191550B0047B111 /* ComicBookCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489F3E2321914EB60047B111 /* ComicBookCollection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,8 @@
 		484FF787218F403B00F712D7 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		489F3E1C2190CB220047B111 /* sample1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sample1.json; sourceTree = "<group>"; };
 		489F3E1E2190D23D0047B111 /* JsonModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModelTests.swift; sourceTree = "<group>"; };
+		489F3E2321914EB60047B111 /* ComicBookCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicBookCollection.swift; sourceTree = "<group>"; };
+		489F3E25219155030047B111 /* ComicBookCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicBookCollectionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +115,7 @@
 		481C1DA1218B561200513E44 /* BookBinderLab1Tests */ = {
 			isa = PBXGroup;
 			children = (
+				489F3E25219155030047B111 /* ComicBookCollectionTests.swift */,
 				489F3E1E2190D23D0047B111 /* JsonModelTests.swift */,
 				481C1DB2218B5B0E00513E44 /* BookBinderURITests.swift */,
 				481C1DA2218B561200513E44 /* BookBinderLab1Tests.swift */,
@@ -126,6 +132,7 @@
 				481C1DB0218B5A6B00513E44 /* URIPart.swift */,
 				481C1DAE218B5A4300513E44 /* BookBinderURI.swift */,
 				484FF785218E021C00F712D7 /* JsonModel.swift */,
+				489F3E2321914EB60047B111 /* ComicBookCollection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -239,6 +246,7 @@
 				481C1DAF218B5A4300513E44 /* BookBinderURI.swift in Sources */,
 				481C1D90218B560F00513E44 /* ViewController.swift in Sources */,
 				481C1D8E218B560F00513E44 /* AppDelegate.swift in Sources */,
+				489F3E2421914EB60047B111 /* ComicBookCollection.swift in Sources */,
 				481C1DB1218B5A6B00513E44 /* URIPart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,8 +258,10 @@
 				481C1DB4218B5B2500513E44 /* URIPart.swift in Sources */,
 				481C1DB5218B5B2800513E44 /* BookBinderURI.swift in Sources */,
 				481C1DA3218B561200513E44 /* BookBinderLab1Tests.swift in Sources */,
+				489F3E26219155030047B111 /* ComicBookCollectionTests.swift in Sources */,
 				489F3E202190D2860047B111 /* JsonModel.swift in Sources */,
 				489F3E1F2190D23D0047B111 /* JsonModelTests.swift in Sources */,
+				489F3E272191550B0047B111 /* ComicBookCollection.swift in Sources */,
 				481C1DB3218B5B0E00513E44 /* BookBinderURITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
