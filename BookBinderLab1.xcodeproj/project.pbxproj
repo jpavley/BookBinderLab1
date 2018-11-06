@@ -28,6 +28,7 @@
 		489F3E2421914EB60047B111 /* ComicBookCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489F3E2321914EB60047B111 /* ComicBookCollection.swift */; };
 		489F3E26219155030047B111 /* ComicBookCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489F3E25219155030047B111 /* ComicBookCollectionTests.swift */; };
 		489F3E272191550B0047B111 /* ComicBookCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489F3E2321914EB60047B111 /* ComicBookCollection.swift */; };
+		489F3E2921923EBB0047B111 /* ComicBookCollectible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489F3E2821923EBB0047B111 /* ComicBookCollectible.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		489F3E1E2190D23D0047B111 /* JsonModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModelTests.swift; sourceTree = "<group>"; };
 		489F3E2321914EB60047B111 /* ComicBookCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicBookCollection.swift; sourceTree = "<group>"; };
 		489F3E25219155030047B111 /* ComicBookCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicBookCollectionTests.swift; sourceTree = "<group>"; };
+		489F3E2821923EBB0047B111 /* ComicBookCollectible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicBookCollectible.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				481C1DAE218B5A4300513E44 /* BookBinderURI.swift */,
 				484FF785218E021C00F712D7 /* JsonModel.swift */,
 				489F3E2321914EB60047B111 /* ComicBookCollection.swift */,
+				489F3E2821923EBB0047B111 /* ComicBookCollectible.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				481C1DAF218B5A4300513E44 /* BookBinderURI.swift in Sources */,
 				481C1D90218B560F00513E44 /* ViewController.swift in Sources */,
 				481C1D8E218B560F00513E44 /* AppDelegate.swift in Sources */,
+				489F3E2921923EBB0047B111 /* ComicBookCollectible.swift in Sources */,
 				489F3E2421914EB60047B111 /* ComicBookCollection.swift in Sources */,
 				481C1DB1218B5A6B00513E44 /* URIPart.swift in Sources */,
 			);

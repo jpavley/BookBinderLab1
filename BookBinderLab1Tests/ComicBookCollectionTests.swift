@@ -44,6 +44,16 @@ class ComicBookCollectionTests: XCTestCase {
         let comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
         XCTAssertNotNil(comicBookCollection)
         let indexPath1 = IndexPath(item: 0, section: 0)
+        
         XCTAssertEqual(comicBookCollection.comicBookDictionary[indexPath1]?.description, "1/Marble Entertainment/The People Under The Chair/1950/1/")
+        
+        let indexPath2 = IndexPath(item: 4, section: 1)
+        XCTAssertEqual(comicBookCollection.comicBookDictionary[indexPath2]?.description, "1/Marble Entertainment/Eternal Bells/1970/5/c")
+        
+        XCTAssertEqual(comicBookCollection.comicBookModel.publishers.count, 2)
+        XCTAssertEqual(comicBookCollection.comicBookModel.publishers[0].series.count, 2)
+        XCTAssertEqual(comicBookCollection.comicBookModel.publishers[0].series[0].volumes.count, 2)
+        XCTAssertEqual(comicBookCollection.comicBookModel.publishers[0].series[0].volumes[0].works.count, 2)
+        XCTAssertEqual(comicBookCollection.comicBookModel.publishers[0].series[0].volumes[0].works[1].variants.count, 2)
     }
 }
