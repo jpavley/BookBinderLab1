@@ -56,4 +56,27 @@ class ComicBookCollectionTests: XCTestCase {
         XCTAssertEqual(comicBookCollection.comicBookModel.publishers[0].series[0].volumes[0].works.count, 2)
         XCTAssertEqual(comicBookCollection.comicBookModel.publishers[0].series[0].volumes[0].works[1].variants.count, 2)
     }
+    
+    func testComicBookCollectibleByURI() {
+        let comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
+        let selectedURI = BookBinderURI(from: comicBookCollection.comicBookModel.selectedURI)
+        let selectedComicbook = comicBookCollection.comicBookCollectibleBy(uri: selectedURI!)
+        
+        XCTAssertNotNil(selectedComicbook)
+        XCTAssertEqual(selectedComicbook.publisher.name, selectedURI?.publisherPart)
+        XCTAssertEqual(selectedComicbook.series.title, selectedURI?.seriesPart)
+        XCTAssertEqual(selectedComicbook.volume.era, Int((selectedURI?.volumePart)!))
+        XCTAssertEqual(selectedComicbook.work.number, Int((selectedURI?.issuePart)!))
+        XCTAssertEqual(selectedComicbook.variant.letter, selectedURI?.variantPart)
+        
+        let anotherURI = BookBinderURI(from: "1/Marble Entertainment/Eternal Bells/1970/5/c")
+        let anotherComicBook = comicBookCollection.comicBookCollectibleBy(uri: anotherURI!)
+        XCTAssertNotNil(anotherComicBook)
+        XCTAssertEqual(anotherComicBook.publisher.name, "Marble Entertainment")
+        XCTAssertEqual(anotherComicBook.series.title, "Eternal Bells")
+        XCTAssertEqual(anotherComicBook.volume.era, 1970)
+        XCTAssertEqual(anotherComicBook.work.number, 5)
+        XCTAssertEqual(anotherComicBook.variant.letter, "c")
+
+    }
 }

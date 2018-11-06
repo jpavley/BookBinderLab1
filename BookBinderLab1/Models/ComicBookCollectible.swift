@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ A comic book as an object with all its properties, pulled out of its hierarchy
+ */
 struct ComicBookCollectible {
     
     let publisher: JsonModel.JsonPublisher
@@ -15,5 +18,9 @@ struct ComicBookCollectible {
     let volume: JsonModel.JsonPublisher.JsonSeries.JsonVolume
     let work: JsonModel.JsonPublisher.JsonSeries.JsonVolume.JsonWork
     let variant: JsonModel.JsonPublisher.JsonSeries.JsonVolume.JsonWork.JsonVariant
+    
+    var uri: BookBinderURI {
+        return BookBinderURI(versionPart: "1", publisherPart: publisher.name, seriesPart: series.title, volumePart: "\(volume.era)", issuePart: "\(work.number)", variantPart: "\(variant.letter)")
+    }
     
 }

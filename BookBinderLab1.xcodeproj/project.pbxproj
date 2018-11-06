@@ -29,6 +29,7 @@
 		489F3E26219155030047B111 /* ComicBookCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489F3E25219155030047B111 /* ComicBookCollectionTests.swift */; };
 		489F3E272191550B0047B111 /* ComicBookCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489F3E2321914EB60047B111 /* ComicBookCollection.swift */; };
 		489F3E2921923EBB0047B111 /* ComicBookCollectible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489F3E2821923EBB0047B111 /* ComicBookCollectible.swift */; };
+		489F3E2A219252770047B111 /* ComicBookCollectible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489F3E2821923EBB0047B111 /* ComicBookCollectible.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,6 +267,7 @@
 				489F3E202190D2860047B111 /* JsonModel.swift in Sources */,
 				489F3E1F2190D23D0047B111 /* JsonModelTests.swift in Sources */,
 				489F3E272191550B0047B111 /* ComicBookCollection.swift in Sources */,
+				489F3E2A219252770047B111 /* ComicBookCollectible.swift in Sources */,
 				481C1DB3218B5B0E00513E44 /* BookBinderURITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

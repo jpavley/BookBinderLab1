@@ -47,4 +47,15 @@ class ComicBookCollection {
         
         return comicBookDictionary
     }
+    
+    func comicBookCollectibleBy(uri: BookBinderURI) -> ComicBookCollectible {
+        
+        let publisher =  comicBookModel.publishers.filter {$0.name == uri.publisherPart}.first!
+        let series = publisher.series.filter {$0.title == uri.seriesPart}.first!
+        let volume = series.volumes.filter {$0.era == Int(uri.volumePart)!}.first!
+        let work = volume.works.filter {$0.number == Int(uri.issuePart)!}.first!
+        let variant = work.variants.filter {$0.letter == uri.variantPart}.first!
+        
+        return ComicBookCollectible(publisher: publisher, series: series, volume: volume, work: work, variant: variant)
+    }
 }
