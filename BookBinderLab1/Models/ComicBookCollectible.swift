@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- A comic book as an object with all its properties, pulled out of its hierarchy
+ A comic book as a flat object with all its properties, pulled out of its hierarchy
  */
 struct ComicBookCollectible {
     
