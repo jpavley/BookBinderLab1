@@ -21,10 +21,10 @@ struct JsonModel: Codable {
     
     /// The URI object the user has selected.
     /// - URI formet: version/publisher/series/volume/work/variant
-    let selectedURI: String
+    var selectedURI: String
     
     /// A list of publishers contained in this model.
-    let publishers: [JsonPublisher]
+    var publishers: [JsonPublisher]
     
     /**
      Creates a new `JsonModel` with the provided URI and publishers.
@@ -42,10 +42,10 @@ struct JsonModel: Codable {
     struct JsonPublisher: Codable {
         
         /// The name of this publisher.
-        let name: String
+        var name: String
         
         /// A list of series associated with this publisher.
-        let series: [JsonSeries]
+        var series: [JsonSeries]
         
         /**
          Creates a new `JsonPublisher` with the provided name and series.
@@ -63,13 +63,13 @@ struct JsonModel: Codable {
         struct JsonSeries: Codable {
             
             /// The title of this series.
-            let title: String
+            var title: String
             
             /// The major characters found in this series.
-            let characters: [String]
+            var characters: [String]
             
             /// A list of volumes associated with this series.
-            let volumes: [JsonVolume]
+            var volumes: [JsonVolume]
             
             /**
              Creates a new `JsonSeries` with the provided title, characters, and volumes.
@@ -89,25 +89,25 @@ struct JsonModel: Codable {
             struct JsonVolume: Codable {
                 
                 /// The kind or type of Volume modeled (on-going, one-shot, mini-series, annual, etc).
-                let kind: String
+                var kind: String
                 
                 /// The year of the historical era when this volume was printed and distributed.
-                let era: Int
+                var era: Int
                 
                 /// The ordinal number of this volume.
-                let number: Int
+                var number: Int
                 
                 /// The number of the first work published in the this volume.
-                let firstWorkNumber: Int
+                var firstWorkNumber: Int
                 
                 /// The number of the most recent or last work published in this volume.
-                let currentWorkNumber: Int
+                var currentWorkNumber: Int
                 
                 /// A list of work numbers representing works that were skipped or not published in this volume.
-                let skippedWorkNumbers: [Int]
+                var skippedWorkNumbers: [Int]
                 
                 /// A list of the works associated with this volume.
-                let works: [JsonWork]
+                var works: [JsonWork]
                 
                 /**
                  Creates a new `JsonVolume` with the provided kind, era, number, firstWorkNumber,
@@ -137,10 +137,10 @@ struct JsonModel: Codable {
                 struct JsonWork: Codable {
                     
                     /// The ordinal number of this work with a volume.
-                    let number: Int
+                    var number: Int
                     
                     /// A list of the of the variants associated with this work.
-                    let variants: [JsonVariant]
+                    var variants: [JsonVariant]
                     
                     /**
                      Creates a new `JsonWork` with the provided number and variants.
@@ -158,25 +158,25 @@ struct JsonModel: Codable {
                     struct JsonVariant: Codable {
                         
                         /// The date when this variant was released and disributed to the public.
-                        let datePublished: String
+                        var datePublished: String
                         
                         /// The kind of medium of this variant.
-                        let kind: String
+                        var kind: String
                         
                         /// The ordinal number of this variant's impression or encoding.
-                        let printing: Int
+                        var printing: Int
                         
                         /// The ordinal letter of this variant's cover or packaging.
-                        let letter: String
+                        var letter: String
                         
                         /// The image ID of this variant's cover or packaging.
-                        let coverID: String
+                        var coverID: String
                         
                         /// The date the user purchased, licensed, or leased this variant.
-                        let dateCollected: String
+                        var dateCollected: String
                         
                         /// The date the user experienced this variant.
-                        let dateConsumed: String
+                        var dateConsumed: String
                         
                         /**
                          Creates a new `JsonVariant` with the provided datePublished, kind, printing,
