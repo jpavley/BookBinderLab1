@@ -59,50 +59,85 @@ class ComicBookCollection {
         return ComicBookCollectible(publisher: publisher, series: series, volume: volume, work: work, variant: variant)
     }
     
-    /**
-     Posts a transation on a collectable to the collection. If collected is true then the current
-     date is used to as the date collected. If consummed is true than the current date is used as
-     date consummed. Otherwise the current values of date collected and consummed are passed along.
-     - Parameters:
-         - uir: The uri of the collectible to change
-         - collected: If true the collectibile has been collected (purchased, rented)
-         - consumed: if true the collectible has been consumeed (read, watched)
-     - Note: Passing false for both collected and consumed does not result in a change.
-    */
-    func transact(uri: BookBinderURI, collected: Bool, consummed: Bool) {
-        
-        if !collected && !consummed {
-            // nothing has changed
-            return
-        }
-        
-        let publisher =  comicBookModel.publishers.filter {$0.name == uri.publisherPart}.first!
-        let series = publisher.series.filter {$0.title == uri.seriesPart}.first!
-        let volume = series.volumes.filter {$0.era == Int(uri.volumePart)!}.first!
-        var work = volume.works.filter {$0.number == Int(uri.issuePart)!}.first!
-        let variant = work.variants.filter {$0.letter == uri.variantPart}.first!
-        
-        var dateCollected = variant.dateCollected
-        if collected {
-            let df = DateFormatter()
-            df.dateFormat = "dd/MM/yyyy"
-            dateCollected = df.string(from: Date())
-        }
-        
-        var dateConsumed = variant.dateConsumed
-        if consummed {
-            let df = DateFormatter()
-            df.dateFormat = "dd/MM/yyyy"
-            dateConsumed = df.string(from: Date())
-        }
-        
-        let purchasedVarient = JsonModel.JsonPublisher.JsonSeries.JsonVolume.JsonWork.JsonVariant(datePublished: variant.datePublished, kind: variant.kind, printing: variant.printing, letter: variant.letter, coverID: variant.coverID, dateCollected: dateCollected, DateConsumed: dateConsumed)
-        
-        for i in 0...work.variants.count {
-            if work.variants[i].letter == purchasedVarient.letter {
-                work.variants.remove(at: i)
-                work.variants.insert(purchasedVarient, at: i)
+    func getIndexOfVariantBy(uri: BookBinderURI, work: JsonModel.JsonPublisher.JsonSeries.JsonVolume.JsonWork) -> Int {
+        var result = -1
+        for i in 0..<work.variants.count {
+            if work.variants[i].letter == uri.variantPart {
+                result = i
+                break
             }
         }
+        return result
+    }
+
+    func getIndexOfWorkBy(uri: BookBinderURI, volume: JsonModel.JsonPublisher.JsonSeries.JsonVolume) -> Int {
+        var result = -1
+        for i in 0..<volume.works.count {
+            if volume.works[i].number == Int(uri.issuePart) {
+                result = i
+                break
+            }
+        }
+        return result
+    }
+
+    func getIndexOfVolumeBy(uri: BookBinderURI, series: JsonModel.JsonPublisher.JsonSeries) -> Int {
+        var result = -1
+        for i in 0..<series.volumes.count {
+            if series.volumes[i].era == Int(uri.volumePart) {
+                result = i
+                break
+            }
+        }
+        return result
+    }
+    
+    func getIndexOfSeriesBy(uri: BookBinderURI, publisher: JsonModel.JsonPublisher) -> Int {
+        var result = -1
+        for i in 0..<publisher.series.count {
+            if publisher.series[i].title == uri.seriesPart {
+                result = i
+                break
+            }
+        }
+        return result
+    }
+    
+    func getIndexOfPublisherBy(uri: BookBinderURI) -> Int {
+        var result = -1
+        for i in 0..<comicBookModel.publishers.count {
+            if comicBookModel.publishers[i].name == uri.publisherPart {
+                result = i
+                break
+            }
+        }
+        return result
+    }
+    
+    func setDateCollected(uri: BookBinderURI, setting: String) {
+        let pi = getIndexOfPublisherBy(uri: uri)
+        let si = getIndexOfSeriesBy(uri: uri, publisher: comicBookModel.publishers[pi])
+        let vi = getIndexOfVolumeBy(uri: uri, series: comicBookModel.publishers[pi].series[si])
+        let wi = getIndexOfWorkBy(uri: uri, volume: comicBookModel.publishers[pi].series[si].volumes[vi])
+        let vi2 = getIndexOfVariantBy(uri: uri, work: comicBookModel.publishers[pi].series[si].volumes[vi].works[wi])
+        
+        comicBookModel.publishers[pi].series[si].volumes[vi].works[wi].variants[vi2].dateCollected = setting
+    }
+    
+    /**
+     Updates dateCollect on a collectible with the curernt date.
+     - Parameters:
+         - uir: The uri of the collectible to purchase
+    */
+    func purchase(uri: BookBinderURI) {
+        
+        let df = DateFormatter()
+        df.dateFormat = "MM/dd/yyyy"
+        let dateCollected = df.string(from: Date())
+        setDateCollected(uri: uri, setting: dateCollected)
+    }
+    
+    func unpurchase(uri: BookBinderURI) {
+        setDateCollected(uri: uri, setting: "")
     }
 }

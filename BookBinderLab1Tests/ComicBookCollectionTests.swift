@@ -111,4 +111,61 @@ class ComicBookCollectionTests: XCTestCase {
         let anotherComicBook = comicBookCollection.comicBookCollectibleBy(uri: anotherURI!)
         XCTAssertEqual(anotherComicBook.wasRead, false)
     }
+    
+    func testPurchase() {
+        let comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
+        let selectedURI = BookBinderURI(from: comicBookCollection.comicBookModel.selectedURI)
+        
+        let selectedComicbook = comicBookCollection.comicBookCollectibleBy(uri: selectedURI!)
+        XCTAssertEqual(selectedComicbook.isOwned, true)
+        comicBookCollection.purchase(uri: selectedURI!)
+        XCTAssertEqual(selectedComicbook.isOwned, true)
+        
+        let anotherURI = BookBinderURI(from: "1/Marble Entertainment/Eternal Bells/1970/1/")
+        let prepurchaseComicBook = comicBookCollection.comicBookCollectibleBy(uri: anotherURI!)
+        XCTAssertEqual(prepurchaseComicBook.isOwned, false)
+        comicBookCollection.purchase(uri: anotherURI!)
+        let postpurchaseComicBook = comicBookCollection.comicBookCollectibleBy(uri: anotherURI!)
+        XCTAssertEqual(postpurchaseComicBook.isOwned, true)
+    }
+    
+    func testUnpurchase() {
+        let comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
+        let selectedURI = BookBinderURI(from: comicBookCollection.comicBookModel.selectedURI)
+        
+        let selectedComicbook = comicBookCollection.comicBookCollectibleBy(uri: selectedURI!)
+        XCTAssertEqual(selectedComicbook.isOwned, true)
+        comicBookCollection.unpurchase(uri: selectedURI!)
+        let selectedComicbook2 = comicBookCollection.comicBookCollectibleBy(uri: selectedURI!)
+        XCTAssertEqual(selectedComicbook2.isOwned, false)
+        
+        let anotherURI = BookBinderURI(from: "1/Marble Entertainment/Eternal Bells/1970/2/")
+        let prepurchaseComicBook = comicBookCollection.comicBookCollectibleBy(uri: anotherURI!)
+        XCTAssertEqual(prepurchaseComicBook.isOwned, true)
+        comicBookCollection.unpurchase(uri: anotherURI!)
+        let postpurchaseComicBook = comicBookCollection.comicBookCollectibleBy(uri: anotherURI!)
+        XCTAssertEqual(postpurchaseComicBook.isOwned, false)
+    }
+    
+    func testBuyAndSell() {
+        let comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
+        
+        for (_, value) in comicBookCollection.comicBookDictionary {
+            comicBookCollection.purchase(uri: value)
+        }
+        
+        for (_, value) in comicBookCollection.comicBookDictionary {
+            let comicBook = comicBookCollection.comicBookCollectibleBy(uri: value)
+            XCTAssertEqual(comicBook.isOwned, true)
+        }
+        
+        for (_, value) in comicBookCollection.comicBookDictionary {
+            comicBookCollection.unpurchase(uri: value)
+        }
+        
+        for (_, value) in comicBookCollection.comicBookDictionary {
+            let comicBook = comicBookCollection.comicBookCollectibleBy(uri: value)
+            XCTAssertEqual(comicBook.isOwned, false)
+        }
+    }
 }
