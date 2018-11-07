@@ -135,8 +135,7 @@ class ComicBookCollection {
     
     /**
      Updates dateCollect on a collectible with the curernt date.
-     - Parameters:
-         - uir: The uri of the collectible to purchase
+     - Parameters: uri The uri of the collectible to purchase
     */
     func purchase(uri: BookBinderURI) {
         
