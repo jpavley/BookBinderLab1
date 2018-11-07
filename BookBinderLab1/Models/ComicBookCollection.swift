@@ -8,6 +8,13 @@
 
 import Foundation
 
+/**
+ Bridge class between a ViewController and a JsonModel.
+ - Note:
+    - The comicBookModel is an instance of a JsonModel.
+    - The comicBookDictionary is a key-value store of BookBinderURIs from the JsonModel mapped to
+      IndexPaths used in the ViewController.
+ */
 class ComicBookCollection {
     
     var comicBookModel: JsonModel
