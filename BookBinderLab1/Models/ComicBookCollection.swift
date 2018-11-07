@@ -114,14 +114,23 @@ class ComicBookCollection {
         return result
     }
     
-    func setDateCollected(uri: BookBinderURI, setting: String) {
+    func getObjectIndexesFor(uri: BookBinderURI) -> (Int, Int, Int, Int, Int) {
         let pi = getIndexOfPublisherBy(uri: uri)
         let si = getIndexOfSeriesBy(uri: uri, publisher: comicBookModel.publishers[pi])
         let vi = getIndexOfVolumeBy(uri: uri, series: comicBookModel.publishers[pi].series[si])
         let wi = getIndexOfWorkBy(uri: uri, volume: comicBookModel.publishers[pi].series[si].volumes[vi])
         let vi2 = getIndexOfVariantBy(uri: uri, work: comicBookModel.publishers[pi].series[si].volumes[vi].works[wi])
-        
+        return (pi,si,vi,wi,vi2)
+    }
+    
+    func setDateCollected(uri: BookBinderURI, setting: String) {
+        let (pi, si, vi, wi, vi2) = getObjectIndexesFor(uri: uri)
         comicBookModel.publishers[pi].series[si].volumes[vi].works[wi].variants[vi2].dateCollected = setting
+    }
+    
+    func setDateConsumed(uri: BookBinderURI, setting: String) {
+        let (pi, si, vi, wi, vi2) = getObjectIndexesFor(uri: uri)
+        comicBookModel.publishers[pi].series[si].volumes[vi].works[wi].variants[vi2].dateConsumed = setting
     }
     
     /**
@@ -139,5 +148,16 @@ class ComicBookCollection {
     
     func unpurchase(uri: BookBinderURI) {
         setDateCollected(uri: uri, setting: "")
+    }
+    
+    func read(uri: BookBinderURI) {
+        let df = DateFormatter()
+        df.dateFormat = "MM/dd/yyyy"
+        let dateConsumed = df.string(from: Date())
+        setDateConsumed(uri: uri, setting: dateConsumed)
+    }
+    
+    func unread(uri: BookBinderURI) {
+        setDateConsumed(uri: uri, setting: "")
     }
 }
