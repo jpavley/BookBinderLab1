@@ -11,7 +11,7 @@ import XCTest
 class ComicBookCollectionTests: XCTestCase {
     
     var jsonModel: JsonModel!
-
+    
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
@@ -33,13 +33,13 @@ class ComicBookCollectionTests: XCTestCase {
                 print(error)
             }
         }
-
+        
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func testInit() {
         let comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
         XCTAssertNotNil(comicBookCollection)
@@ -77,7 +77,7 @@ class ComicBookCollectionTests: XCTestCase {
         XCTAssertEqual(anotherComicBook.volume.era, 1970)
         XCTAssertEqual(anotherComicBook.work.number, 5)
         XCTAssertEqual(anotherComicBook.variant.letter, "c")
-
+        
     }
     
     func testURI() {
@@ -106,7 +106,7 @@ class ComicBookCollectionTests: XCTestCase {
         let selectedURI = BookBinderURI(from: comicBookCollection.comicBookModel.selectedURI)
         let selectedComicbook = comicBookCollection.comicBookCollectibleBy(uri: selectedURI!)
         XCTAssertEqual(selectedComicbook.wasRead, true)
-
+        
         let anotherURI = BookBinderURI(from: "1/Marble Entertainment/Eternal Bells/1970/2/")
         let anotherComicBook = comicBookCollection.comicBookCollectibleBy(uri: anotherURI!)
         XCTAssertEqual(anotherComicBook.wasRead, false)
@@ -227,6 +227,62 @@ class ComicBookCollectionTests: XCTestCase {
             XCTAssertEqual(comicBook.wasRead, false)
         }
     }
+    
+    /// This function shows how to save and load data from user defaults
+    func testSaveAndLoadUserDefaults() {
+        
+        let defaults = UserDefaults.standard
+        
+        // Change the JsonModel so that we know that we can save it changed and read it back changed
+        XCTAssertEqual(jsonModel.publishers[0].series[0].title, "The People Under The Chair")
+        jsonModel.publishers[0].series[0].title = "Do Re Mi"
+        XCTAssertEqual(jsonModel.publishers[0].series[0].title, "Do Re Mi")
+        
+        do {
+            // Encode the JsonModel as JSON
+            let encoder = JSONEncoder()
+            let encoded = try encoder.encode(jsonModel)
+            
+            // Save the JSON to user defaults with the key savedJsonModel
+            defaults.set(encoded, forKey: "savedJsonModel")
+            
+            // Load the JSON back from user defaults with the key savedJsonModel
+            if let savedJsonModel = defaults.object(forKey: "savedJsonModel") as? Data {
+                XCTAssertNotNil(savedJsonModel)
+                
+                // Decode the JSON as a JsonModel
+                let decoder = JSONDecoder()
+                jsonModel = try decoder.decode(JsonModel.self, from: savedJsonModel)
+                XCTAssertNotNil(jsonModel)
+                
+                // Create a ComicBookCollection with the JsonModel
+                let comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
+                XCTAssertNotNil(comicBookCollection)
+                
+                // Test the ComicBookCollection to make sure we didn't lose anything in translation
+                let indexPath1 = IndexPath(item: 0, section: 0)
+                XCTAssertEqual(comicBookCollection.comicBookDictionary[indexPath1]?.description, "1/Marble Entertainment/Do Re Mi/1950/1/")
+                
+                let indexPath2 = IndexPath(item: 4, section: 1)
+                XCTAssertEqual(comicBookCollection.comicBookDictionary[indexPath2]?.description, "1/Marble Entertainment/Eternal Bells/1970/5/c")
+                
+                XCTAssertEqual(comicBookCollection.comicBookModel.publishers.count, 2)
+                XCTAssertEqual(comicBookCollection.comicBookModel.publishers[0].series.count, 2)
+                XCTAssertEqual(comicBookCollection.comicBookModel.publishers[0].series[0].volumes.count, 2)
+                XCTAssertEqual(comicBookCollection.comicBookModel.publishers[0].series[0].volumes[0].works.count, 2)
+                XCTAssertEqual(comicBookCollection.comicBookModel.publishers[0].series[0].volumes[0].works[1].variants.count, 2)
+            }
+            
+            // For testing purposes make sure there are is no old left over data in user defaults
+            // TODO: Sometimes this fails!
+            defaults.removeObject(forKey: "savedJsonModel")
+            defaults.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+            defaults.synchronize()
+            let oldSavedData = defaults.object(forKey: "savedJsonModel")
+            XCTAssertNil(oldSavedData)
 
-
+        } catch {
+            print(error)
+        }
+    }
 }
